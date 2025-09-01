@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bhaskara</title>
+
+    <!-- Link para o Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Calculadora de Bhaskara</h1>
+
+        <!-- Formulário -->
+        <form method="POST" class="bg-white p-4 rounded shadow-sm">
+            <div class="mb-3">
+                <label for="a" class="form-label">Valor de a:</label>
+                <input type="number" class="form-control" id="a" name="a" placeholder="Digite o valor de a" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="b" class="form-label">Valor de b:</label>
+                <input type="number" class="form-control" id="b" name="b" placeholder="Digite o valor de b" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="c" class="form-label">Valor de c:</label>
+                <input type="number" class="form-control" id="c" name="c" placeholder="Digite o valor de c" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Calcular o Bhaskara</button>
+        </form> 
+
+        <!-- Exibindo Resultado ou Erro -->
+        {% if request.method == 'POST' %}
+            {% if error %}
+                <div class="alert alert-danger mt-4" role="alert">
+                    {{ error }}
+                </div>
+
+            {% else %}
+                <div class="alert alert-success mt-4" role="alert">
+                    <h4 class="alert-heading">Resultado:</h4>
+                    <p><strong>Raiz 1:</strong> {{ raiz1 }}</p>
+                    <p><strong>Raiz 2:</strong> {{ raiz2 }}</p>
+                    <p><strong>Delta:</strong> {{ delta }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <!-- Link para o Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
