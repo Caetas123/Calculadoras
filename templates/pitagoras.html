@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Calculadora de Pitágoras{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-warning">Calculadora de Pitágoras</h1>
+
+        <!-- Formulário -->
+        <form method="POST" class="bg-secondary p-4 rounded shadow-sm">
+            <div class="mb-3">
+
+                <label for="ladoA" class="form-label text-light">Lado A (Cateto Adjacente):</label>
+                <input type="number" class="form-control" id="ladoA" name="ladoA" placeholder="Digite o valor do lado A" step="any">
+            
+                <label for="ladoB" class="form-label text-light">Lado B (Cateto Oposto):</label>
+                <input type="number" class="form-control" id="ladoB" name="ladoB" placeholder="Digite o valor do lado B" step="any">
+            
+                <label for="ladoC" class="form-label text-light">Lado C (Hipotenusa):</label>
+                <input type="number" class="form-control" id="ladoC" name="ladoC" placeholder="Digite o valor do lado C" step="any">
+                
+                <label for="precisao" class="form-label text-light">Precisão:</label>
+                <select class="form-select" id="precisao" name="precisao" onchange="mostrarInput()">
+                    <option value="none">Sem arredondamento</option>
+                    <option value="1">1</option>
+                    <option value="0.1">0.1</option>
+                    <option value="0.01">0.01</option>
+                    <option value="0.001">0.001</option>
+                    <option value="0.0001">0.0001</option>
+                    <option value="0.00001">0.00001</option>         
+                    <option value="custom">Personalizado</option>                 
+                    <input id="precisaoCustom" name="precisaoCustom" type="number" max=8 min=1 class="form-control mt-2" placeholder="Digite quantas casas decimais (máximo 8)" style="display:none; margin-top:8px;">
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Ache o valor do outro lado</button>
+        </form> 
+
+        <!-- Exibindo Resultado ou Erro -->
+        {% if request.method == 'POST' %}
+            {% if error %}
+                <div class="alert alert-danger mt-4" role="alert">
+                    {{ error }}
+                </div>
+            {% else %}
+                <div class="alert alert-success mt-4" role="alert">
+                    <h4 class="alert-heading">Resultados:</h4>
+                    <p class="mb-0"><strong>Cateto Adjascente:</strong> {{ catetoAdjascente }}</p>
+                    <p class="mb-0"><strong>Cateto Oposto:</strong> {{ catetoOposto }}</p>
+                    <p class="mb-0"><strong>Hipotenusa:</strong> {{ hipotenusa }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <script>
+        function mostrarInput() {
+            const select = document.getElementById("precisao");      // pega o <select>
+            const input = document.getElementById("precisaoCustom"); 
+
+            if (select.value === "custom") { // se a opção escolhida for "Personalizada"
+                input.style.display = "inline-block"; 
+                input.focus(); // já coloca o cursor dentro do campo
+            } else {
+                input.style.display = "none"; 
+                input.value = ""; 
+            }
+        }
+    </script>
+{% endblock %}
+

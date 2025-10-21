@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Calculadora de Bhaskara{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-warning">Calculadora de Bhaskara</h1>
+
+        <!-- Formulário -->
+        <form method="POST" class="bg-secondary p-4 rounded shadow-sm">
+            <div class="mb-3">
+                <label for="a" class="form-label text-light">Valor de A:</label>
+                <input type="number" class="form-control" id="a" name="a" placeholder="Digite o valor de A" required step="any">
+            
+                <label for="b" class="form-label text-light">Valor de B:</label>
+                <input type="number" class="form-control" id="b" name="b" placeholder="Digite o valor de B" required step="any">
+            
+                <label for="c" class="form-label text-light">Valor de C:</label>
+                <input type="number" class="form-control" id="c" name="c" placeholder="Digite o valor de C" required step="any">
+
+                <label for="precisao" class="form-label text-light">Precisão:</label>
+
+                <select class="form-select" id="precisao" name="precisao" onchange="mostrarInput()">
+                    <option value="none">Sem arredondamento</option>
+                    <option value="1">1</option>
+                    <option value="0.1">0.1</option>
+                    <option value="0.01">0.01</option>
+                    <option value="0.001">0.001</option>
+                    <option value="0.0001">0.0001</option>
+                    <option value="0.00001">0.00001</option>         
+                    <option value="custom">Personalizado</option>           
+                    <input id="precisaoCustom" name="precisaoCustom" type="number" max=8 class="form-control mt-2" placeholder="Digite quantas casas decimais (máximo 8)" style="display:none; margin-top:8px;">
+                </select>
+
+                <input id="precisaoCustom" name="precisaoCustom" type="number" class="form-control mt-2" placeholder="Digite quantas casas decimais você quer" style="display:none; margin-top:8px;">
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Calcular o Bhaskara</button>
+        </form> 
+
+        <!-- Exibindo Resultado ou Erro -->
+        {% if request.method == 'POST' %}
+            {% if error %}
+                <div class="alert alert-danger mt-4" role="alert">
+                    {{ error }}
+                    {% if delta is defined %}
+                        <p class="mb-0">Delta: {{ delta }}</p>
+                    {% endif %}
+                </div>
+
+            {% else %}
+                <div class="alert alert-success mt-4" role="alert">
+                    <h4 class="alert-heading">Resultados:</h4>
+                    <p class="mb-0"><strong>Raiz 1:</strong> {{ raiz1 }}</p>
+                    <p class="mb-0"><strong>Raiz 2:</strong> {{ raiz2 }}</p>
+                    <p class="mb-0"><strong>Delta:</strong> {{ delta }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    
+    <script>
+        function mostrarInput() {
+            const select = document.getElementById("precisao");      // pega o <select>
+            const input = document.getElementById("precisaoCustom"); 
+
+            if (select.value === "custom") { // se a opção escolhida for "Personalizada"
+                input.style.display = "inline-block"; 
+                input.focus(); // já coloca o cursor dentro do campo
+            } else {
+                input.style.display = "none"; 
+                input.value = ""; 
+            }
+        }
+    </script>
+{% endblock %}
+
