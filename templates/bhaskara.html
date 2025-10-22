@@ -16,21 +16,6 @@
                 <label for="c" class="form-label text-light">Valor de C:</label>
                 <input type="number" class="form-control" id="c" name="c" placeholder="Digite o valor de C" required step="any">
 
-                <label for="precisao" class="form-label text-light">Precisão:</label>
-
-                <select class="form-select" id="precisao" name="precisao" onchange="mostrarInput()">
-                    <option value="none">Sem arredondamento</option>
-                    <option value="1">1</option>
-                    <option value="0.1">0.1</option>
-                    <option value="0.01">0.01</option>
-                    <option value="0.001">0.001</option>
-                    <option value="0.0001">0.0001</option>
-                    <option value="0.00001">0.00001</option>         
-                    <option value="custom">Personalizado</option>           
-                    <input id="precisaoCustom" name="precisaoCustom" type="number" max=8 class="form-control mt-2" placeholder="Digite quantas casas decimais (máximo 8)" style="display:none; margin-top:8px;">
-                </select>
-
-                <input id="precisaoCustom" name="precisaoCustom" type="number" class="form-control mt-2" placeholder="Digite quantas casas decimais você quer" style="display:none; margin-top:8px;">
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Calcular o Bhaskara</button>

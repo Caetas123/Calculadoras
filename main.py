@@ -1,5 +1,7 @@
 from flask import Flask, render_template
-from logicasFuncoesMatematicas import bhaskaraView, pitagorasView, trigonometriaView
+from matematica.bhaskara import bhaskaraView
+from matematica.trigonometria import trigonometriaView
+from matematica.pitagoras import pitagorasView
 
 
 app = Flask(__name__)

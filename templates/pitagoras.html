@@ -8,10 +8,10 @@
         <form method="POST" class="bg-secondary p-4 rounded shadow-sm">
             <div class="mb-3">
 
-                <label for="ladoA" class="form-label text-light">Lado A (Cateto Adjacente):</label>
+                <label for="ladoA" class="form-label text-light">Lado A (Cateto 1):</label>
                 <input type="number" class="form-control" id="ladoA" name="ladoA" placeholder="Digite o valor do lado A" step="any">
             
-                <label for="ladoB" class="form-label text-light">Lado B (Cateto Oposto):</label>
+                <label for="ladoB" class="form-label text-light">Lado B (Cateto 2):</label>
                 <input type="number" class="form-control" id="ladoB" name="ladoB" placeholder="Digite o valor do lado B" step="any">
             
                 <label for="ladoC" class="form-label text-light">Lado C (Hipotenusa):</label>
@@ -44,8 +44,8 @@
             {% else %}
                 <div class="alert alert-success mt-4" role="alert">
                     <h4 class="alert-heading">Resultados:</h4>
-                    <p class="mb-0"><strong>Cateto Adjascente:</strong> {{ catetoAdjascente }}</p>
-                    <p class="mb-0"><strong>Cateto Oposto:</strong> {{ catetoOposto }}</p>
+                    <p class="mb-0"><strong>Cateto 1:</strong> {{ cateto1 }}</p>
+                    <p class="mb-0"><strong>Cateto 2:</strong> {{ cateto2 }}</p>
                     <p class="mb-0"><strong>Hipotenusa:</strong> {{ hipotenusa }}</p>
                 </div>
             {% endif %}
